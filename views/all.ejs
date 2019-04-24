@@ -1,0 +1,47 @@
+<% include partials/header %>
+
+<nav aria-label="Page navigation example" class="pagination justify-content-center py-5" >
+    <ul class="pagination">
+        <li class="page-item active"><a class="page-link" href="/all">All Quotes</a></li>
+        <li class="page-item"><a style="background: #141414!important" class="text-white page-link" href="/all-characters">Quotes by Characters</a></li>
+        <li class="page-item"><a style="background: #141414!important"  class="text-white page-link" href="/all-episodes">Quotes by Episodes</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <div class="list-group">
+        <% for(var i = 0; i < quotes.length; i++) {%>
+        <a class="list-group-item list-group-item-action" style="background: #141414!important;">
+            <div class="d-flex flex-row w-100 align-items-center">
+                    <% if(quotes[i].episode === 'Star Wars: Episode IV - A New Hope (1977)') { %>
+                        <img class="mr-3" src="episodes/episode4.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode IV - A New Hope (1977)">
+                    <% } else if (quotes[i].episode === 'Star Wars: Episode V - The Empire Strikes Back (1980)') {%>
+                        <img class="mr-3" src="episodes/episode5.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode V - The Empire Strikes Back (1980)">
+                    <% } else if (quotes[i].episode === 'Star Wars: Episode VI - Return of the Jedi (1983)') {%>
+                        <img class="mr-3" src="episodes/episode6.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode VI - Return of the Jedi (1983)">
+                    <% } else if (quotes[i].episode === 'Star Wars: Episode I - The Phantom Menace (1999)') {%>
+                        <img class="mr-3" src="episodes/episode1.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode I - The Phantom Menace (1999)">
+                    <% } else if (quotes[i].episode === 'Star Wars: Episode II - Attack of the Clones (2002)') {%>
+                        <img class="mr-3" src="episodes/episode2.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode II - Attack of the Clones (2002)">
+                    <% } else if (quotes[i].episode === 'Star Wars: Episode III - Revenge of the Sith (2005)') {%>
+                        <img class="mr-3" src="episodes/episode3.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode III - Revenge of the Sith (2005)">
+                    <% } else if (quotes[i].episode === 'Star Wars: Episode VII - The Force Awakens (2015)') {%>
+                        <img class="mr-3" src="episodes/episode7.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode VII - The Force Awakens (2015)">
+                    <% } else if (quotes[i].episode === 'Star Wars: Episode VIII - The Last Jedi (2017)') {%>
+                        <img class="mr-3" src="episodes/episode8.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode VIII - The Last Jedi (2017)">
+                    <% } else if (quotes[i].episode === 'Rogue One: A Star Wars Story (2016)') {%>
+                        <img class="mr-3" src="episodes/rogueone.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Rogue One: A Star Wars Story (2016)">
+                    <% } else if (quotes[i].episode === 'Solo: A Star Wars Story (2018)') {%>
+                        <img class="mr-3" src="episodes/solo.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Solo: A Star Wars Story (2018)">
+                    <% } %>
+                <div class="d-flex flex-column">
+                    <h6 class="mb-0 text-white"><%= quotes[i].quote %></h6>
+                    <p class="mb-0 text-muted"><%= quotes[i].name %></p>  
+                </div>
+                <small class="d-block ml-auto text-muted"><%= quotes[i].episode %></small>
+            </div>     
+        </a>
+        <% } %>
+    </div>
+</div>
+ 
+<% include partials/footer %>

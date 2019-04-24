@@ -1,0 +1,22 @@
+{
+  "name": "starwarsquotes",
+  "version": "1.0.0",
+  "description": "Website where all quotes from movie franchise assembled together",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "author": "Vince Frost",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-validator": "^5.3.1",
+    "mongodb": "^3.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}

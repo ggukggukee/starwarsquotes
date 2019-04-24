@@ -1,0 +1,55 @@
+<% include partials/header %>
+
+<nav aria-label="Page navigation example" class="pagination justify-content-center py-5" >
+    <ul class="pagination">
+        <li class="page-item"><a style="background: #141414!important" class="text-white page-link" href="/all">All Quotes</a></li>
+        <li class="page-item active"><a class="page-link" href="/all-characters">Quotes by Characters</a></li>
+        <li class="page-item"><a style="background: #141414!important"  class="text-white page-link" href="/all-episodes">Quotes by Episodes</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <div class="accordion" id="accordionExample">
+        <% for(var i = 0; i < charactersGroup.length; i++) { %>
+        <div class="card">
+            <div class="card-header" id="heading<%= i %>" data-toggle="collapse" data-target="#collapse<%= i %>" aria-expanded="false" aria-controls="collapse<%= i %>">
+                <h2 class="mb-0">
+                    <button class="btn text-white">
+                        <%= charactersGroup[i]._id %>
+                    </button>
+                    <span class="badge text-white float-right"><%= charactersGroup[i].quote.length %></span>
+                </h2>
+            </div>
+            <div id="collapse<%= i %>" class="collapse" aria-labelledby="heading<%= i %>" data-parent="#accordionExample">
+                <% for(var k = 0; k < charactersGroup[i].quote.length; k++) { %>
+                <div class="card-body text-white d-flex">
+                    <% if(charactersGroup[i].quote[k].episode === 'Star Wars: Episode IV - A New Hope (1977)') { %>
+                        <img class="mr-3" src="episodes/episode4.jpg" style="height: 30px; width: 30px; border-radius: 50%" title="Star Wars: Episode IV - A New Hope (1977)"><%= charactersGroup[i].quote[k].quote %>
+                    <% } else if (charactersGroup[i].quote[k].episode === 'Star Wars: Episode V - The Empire Strikes Back (1980)') {%>
+                        <img class="mr-3" src="episodes/episode5.jpg" style="height: 30px; width: 30px; border-radius: 50%" title="Star Wars: Episode V - The Empire Strikes Back (1980)"><%= charactersGroup[i].quote[k].quote %>
+                    <% } else if (charactersGroup[i].quote[k].episode === 'Star Wars: Episode VI - Return of the Jedi (1983)') {%>
+                        <img class="mr-3" src="episodes/episode6.jpg" style="height: 30px; width: 30px; border-radius: 50%" title="Star Wars: Episode VI - Return of the Jedi (1983)"><%= charactersGroup[i].quote[k].quote %>
+                    <% } else if (charactersGroup[i].quote[k].episode === 'Star Wars: Episode I - The Phantom Menace (1999)') {%>
+                        <img class="mr-3" src="episodes/episode1.jpg" style="height: 30px; width: 30px; border-radius: 50%" title="Star Wars: Episode I - The Phantom Menace (1999)"><%= charactersGroup[i].quote[k].quote %>
+                    <% } else if (charactersGroup[i].quote[k].episode === 'Star Wars: Episode II - Attack of the Clones (2002)') {%>
+                        <img class="mr-3" src="episodes/episode2.jpg" style="height: 30px; width: 30px; border-radius: 50%" title="Star Wars: Episode II - Attack of the Clones (2002)"><%= charactersGroup[i].quote[k].quote %>
+                    <% } else if (charactersGroup[i].quote[k].episode === 'Star Wars: Episode III - Revenge of the Sith (2005)') {%>
+                        <img class="mr-3" src="episodes/episode3.jpg" style="height: 30px; width: 30px; border-radius: 50%" title="Star Wars: Episode III - Revenge of the Sith (2005)"><%= charactersGroup[i].quote[k].quote %>
+                    <% } else if (charactersGroup[i].quote[k].episode === 'Star Wars: Episode VII - The Force Awakens (2015)') {%>
+                        <img class="mr-3" src="episodes/episode7.jpg" style="height: 30px; width: 30px; border-radius: 50%" title="Star Wars: Episode VII - The Force Awakens (2015)"><%= charactersGroup[i].quote[k].quote %>
+                    <% } else if (charactersGroup[i].quote[k].episode === 'Star Wars: Episode VIII - The Last Jedi (2017)') {%>
+                        <img class="mr-3" src="episodes/episode8.jpg" style="height: 30px; width: 30px; border-radius: 50%" title="Star Wars: Episode VIII - The Last Jedi (2017)"><%= charactersGroup[i].quote[k].quote %>
+                    <% } else if (charactersGroup[i].quote[k].episode === 'Rogue One: A Star Wars Story (2016)') {%>
+                        <img class="mr-3" src="episodes/rogueone.jpg" style="height: 30px; width: 30px; border-radius: 50%" title="Rogue One: A Star Wars Story (2016)"><%= charactersGroup[i].quote[k].quote %>
+                    <% } else if (charactersGroup[i].quote[k].episode === 'Solo: A Star Wars Story (2018)') {%>
+                        <img class="mr-3" src="episodes/solo.jpg" style="height: 30px; width: 30px; border-radius: 50%" title="Solo: A Star Wars Story (2018)"><%= charactersGroup[i].quote[k].quote %>
+                    <% } %>
+                </div>
+                <% } %>  
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <p class="text-center text-muted font-italic my-5">Click to expand</p>
+</div>
+ 
+<% include partials/footer %>

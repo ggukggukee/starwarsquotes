@@ -1,0 +1,66 @@
+<% include partials/header %>
+
+<%  var allCharacters = ['Rose Tico','Captain Peavey','Commander D’Acy','Admiral Ackbar','Wilhuff Tarkin','Mon Mothma','Supreme Leader Snoke','Kylo Ren','Saw Gerrera','Maz Kanata','Poe Dameron','Yoda','Darth Vader', 'C-3PO','Lando Calrissian','Emperor Palpatine','Watto','Finn','Leia Organa','K-2SO','Anakin Skywalker','Cassian Andor','Biggs Darklighter','Luke Skywalker','Han Solo','Qui-Gon Jinn','Orson Krennic','Shmi Skywalker','Count Dooku','Rey','Queen Jamillia','Obi-Wan Kenobi','Jango Fett','General Hux','Chancellor Palpatine','Nute Gunray','Padme Amidala','Darth Sidious','Jyn Erso','Chirrut Imwe'] %>
+<%  function shuffle(o) { %>
+<%  for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x); %>
+<%      return o; %>
+<%  }; %>
+<%  var random = shuffle(allCharacters); %>
+<%  var firstCharacter = random[0]; %>
+<%  var secondCharacter = random[1]; %>
+<%  var thirdCharacter = random[2]; %>
+<%  if(randomThree[0].name === firstCharacter) { %>
+<%     var firstCharacter = thirdCharacter; %>
+<%  } else if (randomThree[0].name === secondCharacter) { %>
+<%     var secondCharacter = thirdCharacter; %>
+<%  } %>
+
+<script>
+    var uniqueRandoms = ['order-1', 'order-2', 'order-3'];
+    var numRandoms = 3;
+    function makeUniqueRandom() {
+        // refill the array if needed
+        if (!uniqueRandoms.length) {
+            for (var i = 0; i < numRandoms; i++) {
+                uniqueRandoms.push(i);
+            }
+        }
+        var index = Math.floor(Math.random() * uniqueRandoms.length);
+        var val = uniqueRandoms[index];
+        // now remove that value from the array
+        uniqueRandoms.splice(index, 1);
+        return val;
+    }
+        $(document).ready(function() {
+        var buttons = $('.btn');
+        $.each( buttons, function(key, value) { 
+            // get random value/class-name from array and add it using the addClass function
+             $(value).addClass('' + (makeUniqueRandom()));
+        });
+    });
+</script>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container text-center py-5">
+        <blockquote class="blockquote text-white">
+            <h2><%= randomThree[0].quote %></h2>
+        </blockquote>
+        <br>
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-outline-secondary mx-1 quizresult" data-container="body" data-toggle="popover" data-placement="top" data-content="Correct!" href="#" role="button"><%= randomThree[0].name%></a>
+            <a class="btn btn-outline-secondary mx-1 notquizresult" href="#" role="button"><%= firstCharacter %></a>
+            <a class="btn btn-outline-secondary mx-1 notquizresult" href="#" role="button"><%= secondCharacter %></a>
+        </div>
+        <br>
+        <div class="hint">
+            <div class="form-check">
+                <input class="form-check-input" id="formInput" type="checkbox" value="0">
+                <label class="form-check-label text-muted" for="defaultCheck1">Hint</label>
+            </div>
+            <p style="display: none" id="formDiv" class="episodeHint text-white"><%= randomThree[0].episode %></p>
+        </div>
+    </div> 
+</div>
+<p id="textBottom" style="display: block" class="text-center text-muted font-italic">Choose one right answer. May the Force be with you.</p>
+
+<% include partials/footer %>
+

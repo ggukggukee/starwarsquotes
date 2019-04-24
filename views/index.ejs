@@ -1,0 +1,45 @@
+<% include partials/header %>
+
+<div class="jumbotron jumbotron-fluid">
+<% for(var i = 0; i < randomOne.length; i++) { %>
+    <div class="container text-center my-5">
+        <blockquote class="blockquote text-center">
+            <h2 class="text-white"><%= randomOne[i].quote %></h2>
+            <p class="mb-0"><small class="text-muted"><span class="font-italic"><%= randomOne[i].name %></span> in <span class="font-italic"><%= randomOne[i].episode %></span></small></p>
+        </blockquote>
+    </div>
+<% } %>
+</div>
+<div class="container">
+    <div class="card-deck pb-5">
+        <a href="/all">
+            <div class="card text-center">
+                <img src="darthvader.svg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <a class="card-title text-decoration-none text-white" href="/all"><h5>All Quotes</h5></a>
+                    <p class="card-text text-muted"><%= quotesAmount %></p>
+                </div>
+            </div>
+        </a>
+        <a href="/quiz">
+            <div class="card text-center">
+                <img src="kyloren.svg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <a class="card-title text-decoration-none text-white" href="/quiz"><h5>Quote Quiz</h5></a>
+                    <p class="card-text text-muted">Do you know everything?</p>
+                </div>
+            </div>
+        </a>
+        <a href="/comingsoon">
+            <div class="card text-center">
+                <img src="bobbafett.svg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <a class="card-title text-decoration-none text-white" href="/comingsoon"><h5>Coming Soon</h5></a>
+                    <p class="card-text text-muted">New features</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<% include partials/footer %>

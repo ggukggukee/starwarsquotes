@@ -1,0 +1,47 @@
+html {
+   margin: 0;
+   padding: 0;
+   height: 100%;
+   overflow: auto;
+}
+
+body {
+    min-height: 100%; 
+    position: relative; 
+    padding-bottom: 80px;
+    background: #1B1B1B!important;
+    overflow: hidden;
+}
+
+footer { 
+    position: absolute; 
+    left: 0 ; right: 0; bottom: 0; 
+    height: 80px;
+}
+
+h1, h2, h3, h4, h5, h6, p, li, a, ul, div, i {
+    font-family: 'Varela Round', sans-serif!important;
+}
+
+.btn:focus, .btn:active, .page-link {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+
+img[src='/werehomechewie.webp'] {
+    width: 100%;
+    height: 100%;
+}
+
+.jumbotron {
+    background: #1B1B1B!important; 
+    }
+
+.card {
+    background: #141414!important; 
+    border: none!important;
+}
+
+
+
+

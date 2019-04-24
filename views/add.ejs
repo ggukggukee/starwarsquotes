@@ -1,0 +1,36 @@
+<% include partials/header %>
+
+<div class="container my-5">
+    <h2 class="text-white">Add quotes</h2>
+    <div class="card py-3 px-3 mt-3">
+        <form action="/quotes" method="POST">
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="text-white">Character's Name</label>
+                <input type="text" name="name" class="form-control font-italic" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Example: Darth Vader" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1" class="text-white">Quote</label>
+                <input type="text" name="quote" class="form-control font-italic" id="exampleInputPassword1" placeholder="Example: I am your Father" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleStateSelect" class="text-white">Episode</label>
+                <select  id="inputState" class="form-control font-italic" name="episode">
+                    <option value="Star Wars: Episode IV - A New Hope (1977)" selected>Episode IV</option>
+                    <option value="Star Wars: Episode V - The Empire Strikes Back (1980)">Episode V</option>
+                    <option value="Star Wars: Episode VI - Return of the Jedi (1983)">Episode VI</option>
+                    <option value="Star Wars: Episode I - The Phantom Menace (1999)">Episode I</option>
+                    <option value="Star Wars: Episode II - Attack of the Clones (2002)">Episode II</option>
+                    <option value="Star Wars: Episode III - Revenge of the Sith (2005)">Episode III</option>
+                    <option value="Star Wars: Episode VII - The Force Awakens (2015)">Episode VII</option>
+                    <option value="Star Wars: Episode VIII - The Last Jedi (2017)">Episode VIII</option>
+                    <option value="Rogue One: A Star Wars Story (2016)">Rogue One</option>
+                    <option value="Solo: A Star Wars Story (2018)">Solo</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <p class="text-center text-muted font-italic mt-5">Add quotes you know and they will shown on this site next time</p>
+</div>
+
+<% include partials/footer %>

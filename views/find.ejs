@@ -1,0 +1,103 @@
+<% include partials/header %>
+
+<div class="container my-5">
+    <h3 class="text-white">Search quotes by character's name, quote or episode</h3>
+    <div class="card px-3 py-3">
+        <form action="/find" method="GET">
+            <div class="row">
+                <div class="col">
+                    <label for="exampleInputEmail1" class="text-white">Character's Name</label>
+                    <input id="charactersInput" type="text" name="name" class="form-control" placeholder="Example: Darth Vader" onkeyup='saveValue(this);'>
+                </div>
+                <div class="col">
+                    <label for="exampleInputEmail2" class="text-white">Quote</label>
+                    <input id="quoteInput" type="text" name="quote" class="form-control" placeholder="Quote" onkeyup='saveValue(this);'>
+                </div>
+                <div class="col">
+                    <label for="exampleStateSelect" class="text-white">Episode</label>
+                    <select  id="inputState1" class="form-control" name="episode">
+                        <option value="" selected></option>
+                        <option value="Star Wars: Episode IV - A New Hope (1977)">Episode IV</option>
+                        <option value="Star Wars: Episode V - The Empire Strikes Back (1980)">Episode V</option>
+                        <option value="Star Wars: Episode VI - Return of the Jedi (1983)">Episode VI</option>
+                        <option value="Star Wars: Episode I - The Phantom Menace (1999)">Episode I</option>
+                        <option value="Star Wars: Episode II - Attack of the Clones (2002)">Episode II</option>
+                        <option value="Star Wars: Episode III - Revenge of the Sith (2005)">Episode III</option>
+                        <option value="Star Wars: Episode VII - The Force Awakens (2015)">Episode VII</option>
+                        <option value="Star Wars: Episode VIII - The Last Jedi (2017)">Episode VIII</option>
+                        <option value="Rogue One: A Star Wars Story (2016)">Rogue One</option>
+                        <option value="Solo: A Star Wars Story (2018)">Solo</option>
+                    </select>
+                </div>
+            </div>
+            <button id="findButton" type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+    </div>
+    <br>
+    <div class="list-group">
+        <% for(var i = 0; i < foundData.length; i++) {%>
+        <a class="list-group-item list-group-item-action" style="background: #141414!important;">
+            <div class="d-flex flex-row w-100 align-items-center">
+                <% if(foundData[i].episode === 'Star Wars: Episode IV - A New Hope (1977)') { %>
+                    <img class="mr-3" src="episodes/episode4.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode IV - A New Hope (1977)">
+                <% } else if (foundData[i].episode === 'Star Wars: Episode V - The Empire Strikes Back (1980)') {%>
+                    <img class="mr-3" src="episodes/episode5.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode V - The Empire Strikes Back (1980)">
+                <% } else if (foundData[i].episode === 'Star Wars: Episode VI - Return of the Jedi (1983)') {%>
+                    <img class="mr-3" src="episodes/episode6.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode VI - Return of the Jedi (1983)">
+                <% } else if (foundData[i].episode === 'Star Wars: Episode I - The Phantom Menace (1999)') {%>
+                    <img class="mr-3" src="episodes/episode1.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode I - The Phantom Menace (1999)">
+                <% } else if (foundData[i].episode === 'Star Wars: Episode II - Attack of the Clones (2002)') {%>
+                    <img class="mr-3" src="episodes/episode2.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode II - Attack of the Clones (2002)">
+                <% } else if (foundData[i].episode === 'Star Wars: Episode III - Revenge of the Sith (2005)') {%>
+                    <img class="mr-3" src="episodes/episode3.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode III - Revenge of the Sith (2005)">
+                <% } else if (foundData[i].episode === 'Star Wars: Episode VII - The Force Awakens (2015)') {%>
+                    <img class="mr-3" src="episodes/episode7.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode VII - The Force Awakens (2015)">
+                <% } else if (foundData[i].episode === 'Star Wars: Episode VIII - The Last Jedi (2017)') {%>
+                    <img class="mr-3" src="episodes/episode8.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Star Wars: Episode VIII - The Last Jedi (2017)">
+                <% } else if (foundData[i].episode === 'Rogue One: A Star Wars Story (2016)') {%>
+                    <img class="mr-3" src="episodes/rogueone.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Rogue One: A Star Wars Story (2016)">
+                <% } else if (foundData[i].episode === 'Solo: A Star Wars Story (2018)') {%>
+                    <img class="mr-3" src="episodes/solo.jpg" style="height: 40px; width: 40px; border-radius: 50%" title="Solo: A Star Wars Story (2018)">
+                <% } %>
+                <div class="d-flex flex-column">
+                    <h6 class="mb-0 text-white"><%= foundData[i].quote %></h6>
+                    <p class="mb-0 text-muted"><%= foundData[i].name %></p>  
+                </div>
+                <small class="ml-auto text-muted"><%= foundData[i].episode %></small>
+            </div>     
+        </a>
+        <% } %>
+    </div>
+    <p class="text-center text-muted font-italic mt-5">Hover image to see title of episode</p>
+</div>
+
+<script type="text/javascript">
+    document.getElementById("charactersInput").value = getSavedValue("charactersInput");    // set the value to this input
+    document.getElementById("quoteInput").value = getSavedValue("quoteInput");   // set the value to this input
+    /* Here you can add more inputs to set value. if it's saved */
+
+    //Save the value function - save it to localStorage as (ID, VALUE)
+    function saveValue(e){
+        var id = e.id;  // get the sender's id to save it . 
+        var val = e.value; // get the value. 
+        localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
+    }
+
+    //get the saved value function - return the value of "v" from localStorage. 
+    function getSavedValue  (v){
+        if (!localStorage.getItem(v)) {
+            return "";// You can change this to your defualt value. 
+        }
+        return localStorage.getItem(v);
+    }
+
+    // const buttonFind = document.getElementById('buttonFind');
+    // buttonFind.addEventListener('click', (e) => {
+    //     const listGroup = document.querySelector('.list-group');
+    //     listGroup.className += 'd-block';
+    //     listGroup.className -= 'd-none';
+    // })
+</script>
+
+<% include partials/footer %>
+
