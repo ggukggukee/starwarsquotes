@@ -148,3 +148,7 @@ app.get('/quiz', (req, res) => {
 app.get('/comingsoon', (req, res) => {
     res.render('comingsoon');
 });
+
+app.get('/*', (req, res) => {
+        res.render('404');
+});
