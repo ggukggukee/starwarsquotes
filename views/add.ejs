@@ -3,7 +3,7 @@
 <div class="container my-5">
     <h2 class="text-white">Add quotes</h2>
     <div class="card py-3 px-3 mt-3">
-        <form action="/add" method="POST">
+        <form action="/add?_csrf=<%= csrfToken %>" method="POST">
             <div class="form-group">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <label for="exampleInputEmail1" class="text-white">Character's Name</label>
