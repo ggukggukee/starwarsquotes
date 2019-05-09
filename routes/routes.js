@@ -1,4 +1,4 @@
-// declares
+// imports
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
     });
 });
 
-//find route
+// find route
 router.get('/find', (req, res) => {
     var newName = new RegExp(req.query.name, 'i');
     var newQuote = new RegExp(req.query.quote, 'i');
@@ -55,7 +55,7 @@ router.get('/find', (req, res) => {
     });
 });
 
-//all quotes route
+// all quotes route
 router.get('/all', (req, res) => {
     db.collection('quotes').find().toArray((err, result) => {
         if(err){
@@ -88,13 +88,13 @@ router.get('/all-episodes', (req, res) => {
     });
 });
 
-//add new quote get route
+// add new quote get route
 router.get('/add', (req, res) => {
-    res.render('add');
+    res.render('add', {csrfToken: req.csrfToken()});
 });
 
-//add new quote post route
-router.post('/quotes', [
+// add new quote post route
+router.post('/add', [
     check('name').isLength({ min: 2 }).trim().escape(),
     check('quote').isLength({ min: 2 }).trim().escape(),
     check('episode').isLength({ min: 2 }).trim().escape(),
@@ -105,7 +105,7 @@ router.post('/quotes', [
     const errors = validationResult(req);
     db.collection('quotesbyfans').insertOne({name: name, quote: quote, episode: episode}, (err, result) => {
         if(err, !errors.isEmpty()) {
-            res.status(422).json({errors: errors.array()});
+            res.status(422).json({errors: errors.array(), csrfToken: req.csrfToken()});
             console.log(err);
         } else {
             console.log('Saved to DB');
@@ -114,7 +114,7 @@ router.post('/quotes', [
     });
 });
 
-//quiz route
+// quiz route
 router.get('/quiz', (req, res) => { 
     db.collection('quotes').aggregate([{$sample: {size: 1}}]).toArray((err, randomThree) => {
         if(err){
@@ -125,7 +125,7 @@ router.get('/quiz', (req, res) => {
     });
 });
 
-//coming soon route
+// coming soon route
 router.get('/comingsoon', (req, res) => {
     res.render('comingsoon');
 });

@@ -17,3 +17,34 @@ $('.notquizresult').click(function(){
 $(function () {
     $('.quizresult').popover({container: 'body'});
 });
+
+$(window).on('resize', () => {
+    const win = $(this);
+    if (win.width() >= 576) {
+        $('.nav').removeClass('justify-content-center');
+        $('.pagination').removeClass('pagination-sm');
+        $('.all-episode').removeClass('d-none');
+        $('.all-episode').addClass('d-block');
+    }
+    if (win.width() <= 576) {
+        $('.nav').addClass('justify-content-center');
+        $('.pagination').addClass('pagination-sm');
+        $('.all-episode').addClass('d-none');
+        $('.all-episode').removeClass('d-block');
+    }
+});
+
+$(document).ready(() => {
+    if ($(window).width() >= 576) {
+        $('.nav').removeClass('justify-content-center');
+        $('.pagination').removeClass('pagination-sm');
+        $('.all-episode').removeClass('d-none');
+        $('.all-episode').addClass('d-block');
+    } 
+    if ($(window).width() <= 576) {
+        $('.nav').addClass('justify-content-center');
+        $('.pagination').addClass('pagination-sm');
+        $('.all-episode').addClass('d-none');
+        $('.all-episode').removeClass('d-block');
+    }
+});
